@@ -2,8 +2,8 @@
 CONTRIBUTING.md
 LICENSE
 README.md
-docs/Device.md
 docs/architecture.md
+docs/device.md
 docs/writing-apps.md
 partitions_screwdriver.csv
 platformio.ini

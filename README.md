@@ -1,11 +1,9 @@
-# Screwdriver
+# Stick Screwdriver
 
-Firmware for the **M5Stack StickS3**: a framework for pocket tools, and the
-four that come with it. Apps are added one file at a time and no central list
-is edited, so a tool you write cannot break the ones already there.
+A firmware for the **M5Stack StickS3**, kind of a Swiss Army Knife.
 
-This repository is the base. SCREWDRIVER (the launcher), SYSTEM, HELP and
-CONSOLE are here; other apps install into it.
+This is a long-term project I originally created for my own personal fun. I wanted to make it open source, I exported the architecture and core structure to this public repository. The export process was carried out by Claude Code; personal apps and those that could not be licensed were removed, leaving only the underlying framework—which was then exported for general use—and certain issues were resolved.
+
 
 ## Hardware
 
@@ -22,7 +20,7 @@ CONSOLE are here; other apps install into it.
 | Expansion | Hat2 bus, HY2.0-4P Port A |
 
 Pin map, the board's quirks, battery and sleep:
-[docs/Device.md](docs/Device.md).
+[docs/device.md](docs/device.md).
 
 ## Build
 
