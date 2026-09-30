@@ -1,9 +1,8 @@
 .gitignore
 CONTRIBUTING.md
-Device.md
 LICENSE
-Power.md
 README.md
+docs/Device.md
 docs/architecture.md
 docs/writing-apps.md
 partitions_screwdriver.csv

@@ -21,8 +21,8 @@ CONSOLE are here; other apps install into it.
 | Buttons | KEY1 G11, KEY2 G12 |
 | Expansion | Hat2 bus, HY2.0-4P Port A |
 
-Pin map and the board's quirks: [Device.md](Device.md). Battery and sleep:
-[Power.md](Power.md).
+Pin map, the board's quirks, battery and sleep:
+[docs/Device.md](docs/Device.md).
 
 ## Build
 
