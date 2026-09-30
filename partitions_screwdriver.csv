@@ -1,0 +1,36 @@
+# Screwdriver partition table
+#
+# Why this is not default_8MB.csv
+# -------------------------------
+# That table gives NVS 0x5000 - twenty kilobytes, five pages - and NVS keeps one
+# page free to compact into, so four pages hold everything. On this device that
+# is shared between MOOD (two 776-byte blobs rewritten every five minutes),
+# ROOMS (three 768-byte nights and a radio record), IR CLONE (eight 516-byte
+# codes), LEVEL, CALIBRATION, the thermal plateau - and the WiFi driver's
+# own PHY calibration and station config.
+#
+# It ran out. The failure is worth describing because none of it says "NVS":
+# nvs_set_blob returns NOT_ENOUGH_SPACE, so WiFi cannot store its calibration,
+# so esp_wifi_set_mode fails 0x1105, so softAP is refused, so NOTES has no
+# network. An app that never touches NVS dies of a full one.
+#
+# So NVS gets 84 KB and the space comes from the OTA slot, which was 3.3 MB of
+# flash this firmware has never used - there is no OTA path in it, and updates
+# arrive over USB.
+#
+# Two offsets are deliberately unchanged, because moving either would erase
+# something:
+#   nvs    stays at 0x9000 and only grows, so everything already stored is
+#          still there. NVS treats the new pages at the end as free.
+#   spiffs stays at 0x670000 at the same size, so notes survive.
+#
+# Both boot_app0 and the app offset are read from this file by the build - see
+# get_app_partition_offset and ota_partition_params in the platform's espidf.py
+# - so otadata and app0 can move without anything being hardcoded to find them.
+#
+# Name,   Type, SubType, Offset,   Size,     Flags
+nvs,      data, nvs,     0x9000,   0x15000,
+otadata,  data, ota,     0x1E000,  0x2000,
+app0,     app,  ota_0,   0x20000,  0x650000,
+spiffs,   data, spiffs,  0x670000, 0x180000,
+coredump, data, coredump,0x7F0000, 0x10000,
